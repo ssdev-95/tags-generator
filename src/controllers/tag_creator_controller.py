@@ -17,7 +17,7 @@ class TagCreatorController:
     def __format_response(self, tag_path) -> Dict:
         return {
             'type': 'x-image-tag',
-            'extension': 'png',
+            'extension': 'svg',
             'short-path': tag_path,
-            'full-path': f'{tag_path}.png'
+            'full-path': f'{tag_path}.svg'
         }
