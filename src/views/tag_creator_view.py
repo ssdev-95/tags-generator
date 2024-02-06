@@ -7,6 +7,10 @@ class TagCreatorView:
     def validate_request(self, http_request_body: Dict):
         if http_request_body is None:
             return False
+
+        if 'product_code' not in http_request_body:
+            return False
+
         return True
 
     def create_tag(self, http_request: HttpRequest) -> HttpResponse:
