@@ -3,21 +3,20 @@ from src.drivers.barcode_handler import BarcodeHandler
 
 
 class TagCreatorController:
-    def create(self, product_code: str) -> Dict:
-        tag_path = self.__create_tag(product_code)
-        return self.__format_response(tag_path)
+    def create(self, product_code: str, extension: str) -> Dict:
+        tag_path = self.__create_tag(product_code, extension)
+        return self.__format_response(tag_path, extension)
 
 
-    def __create_tag(self, product_code: str) -> str:
+    def __create_tag(self, product_code: str, extension: str) -> str:
         bc_handler = BarcodeHandler()
-        tag_path = bc_handler.create_barcode(product_code)
+        tag_path = bc_handler.create_barcode(product_code,extension.lower())
         return tag_path
 
 
-    def __format_response(self, tag_path) -> Dict:
+    def __format_response(self, tag_path: str, extension: str) -> Dict:
         return {
             'type': 'x-image-tag',
-            'extension': 'svg',
-            'short-path': tag_path,
-            'full-path': f'{tag_path}.svg'
+            'extension': extension,
+            'path': f'{tag_path}.{extension.lower()}'
         }
