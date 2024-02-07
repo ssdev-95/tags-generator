@@ -2,7 +2,7 @@ from typing import Dict
 from src.drivers.barcode_handler import BarcodeHandler
 
 
-class TagCreatorController:
+class BarcodeCreatorController:
     def create(self, product_code: str, extension: str) -> Dict:
         tag_path = self.__create_tag(product_code, extension)
         return self.__format_response(tag_path, extension)
