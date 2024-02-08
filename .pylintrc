@@ -6,6 +6,7 @@ disable=
       W0703, # Catching too general exception Exception
       R0903, # too-few-public-methods
 			W0719, # broad-exception-raised
+			C0301, # Line too long (103/100) (line-too-long)
 
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists
