@@ -11,15 +11,15 @@ def handle_errors(error: Exception) -> HttpResponse:
                     'title': error.name,
                     'detail': error.message
                     }]
-                }
-            })
+                },
+        }, error.status_code)
 
     return HttpResponse({
-        'status_code': 500,
-        'body': { 
+        'body': {
+            'status_code': 500,
             'errors': [{
                 'title': 'InternalServerError',
                 'detail': str(error)
             }]
         }
-    })
+    }, 500)

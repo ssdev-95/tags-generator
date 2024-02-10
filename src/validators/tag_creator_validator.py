@@ -18,7 +18,9 @@ class TagCreatorValidator:
             }
         }
 
-    def validate(self, request: any):
-        validator = Validator(self.__schema)
-        if not validator.validate(request.json):
-            raise HttpUnprocessableEntityException(validator.errors)
+
+    def validate(self, request)-> None:
+        v = Validator()
+        if not v.validate(request.json, self.__schema):
+            errors = v.errors
+            raise HttpUnprocessableEntityException(errors)

@@ -13,4 +13,4 @@ class QrcodeCreatorView:
         tag_creator = QrcodeCreatorController()
         response_body = tag_creator.create(product_code, extension)
 
-        return HttpResponse(status_code=201, body=response_body)
+        return HttpResponse(response_body, 201)
