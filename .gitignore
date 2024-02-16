@@ -167,3 +167,6 @@ cython_debug/
 **/*.jpg
 **/*.webp
 **/*.ico
+
+# TMP Folder
+tmp/

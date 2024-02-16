@@ -1,0 +1,6 @@
+services:
+  api:
+    build: .
+    ports:
+      - "3001:3001"
+    command: python3 run.py
