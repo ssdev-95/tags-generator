@@ -4,11 +4,18 @@
 
   Using flask to develop a easy to use and scalable application that can generate both barcode and qrcode for logistic services to use.
 
+## Techs
+
+  - Python3 (as main language)
+  - Flask (as framework for api)
+  - Cerberus (for request validation)
+
 ## Tools
 
-  - neovim
-  - python-pip
-  - python-venv
+  - Neovim
+  - Python-pip
+  - Python-venv
+  - Docker
 
 ## Roadmap
 
@@ -17,8 +24,10 @@
   - [x] a tag can be generated in various formats
   - [x] generated tags can be saved
   - [x] unit tests
+  - [x] containerization with docker
+  - [ ] send generated tag images to a CDN/Cloud
   - [ ] develop a frontend to consume this api and make it easier for users on browser
+  - [ ] add authentication
   - [ ] users can see actual generated tags
-  - [ ] containerization with docker
   - [ ] deploy
 
