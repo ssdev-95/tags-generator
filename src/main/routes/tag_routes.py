@@ -18,7 +18,7 @@ def createTag():
     tc_validator = TagCreatorValidator(allowed_formats)
     tc_validator.validate(request)
 
-    http_request = HttpRequest(body=request.json)
+    http_request = HttpRequest(body=request.get_json())
     tag_creator_view = TagCreatorView(tag_type)
     http_response = tag_creator_view.create_tag(http_request)
     return jsonify(http_response.body), http_response.status_code

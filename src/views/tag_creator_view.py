@@ -19,7 +19,7 @@ class TagCreatorView:
         product_code = request_body['product_code']
         extension = request_body['extension']
 
-        if (self.__tag_type__.upper() == 'QR'):
+        if (self.__tag_type__.upper() == 'QRCODE'):
             tag_creator_handler = QrcodeHandler()
         else:
             tag_creator_handler = BarcodeHandler()
