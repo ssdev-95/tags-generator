@@ -1,10 +1,12 @@
+from flask import jsonify
 from src.views.http_types.http_response import HttpResponse
 from src.errors.error_types.http_unprocessable_entity_exception import HttpUnprocessableEntityException
 
 
-def handle_errors(error: Exception) -> HttpResponse:
+def handle_errors(error: Exception):
     if isinstance(error,HttpUnprocessableEntityException):
-        return HttpResponse({
+        print('HTTP UNPROCESSABLE ENTITY EXCEPTION')
+        http_response = HttpResponse({
             'status_code': error.status_code,
             'body': {
                 'errors': [{
@@ -14,7 +16,10 @@ def handle_errors(error: Exception) -> HttpResponse:
                 },
         }, error.status_code)
 
-    return HttpResponse({
+        return jsonify(http_response.body), http_response.status_code
+
+    print('ANOTHER HTTP EXCEPTION')
+    http_response = HttpResponse({
         'body': {
             'status_code': 500,
             'errors': [{
@@ -23,3 +28,5 @@ def handle_errors(error: Exception) -> HttpResponse:
             }]
         }
     }, 500)
+
+    return jsonify(http_response.body), http_response.status_code
