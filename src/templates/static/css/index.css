@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.flash-error {
+		@apply bg-red-300 ring-red-500;
+	}
+
+	.flash-error {
+		@apply bg-lime-300 ring-lime-500;
+	}
+}

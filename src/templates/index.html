@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<main class="w-full max-w-100 mx-auto min-h-lsc flex flex-col gap-4">
+	<div class="flex items-center gap-3">
+		<img src={{url_for('static',filename='img/favicon.svg')}} class="h-6 w-auto" alt="a star vectorized icon" />
+		<h1>Tag Gen</h1>
+	</div>
+
+	<div class="flex gap-4">
+		<a href="/tags/create?type=BARCODE" {% if type == 'BARCODE' %} data-active {% endif %} class="px-3 py-2 bg-zinc-200 text-zinc-800 data-[active]:bg-zinc-500 [data-active='true']:text-zinc-50">BARCODE</label>
+
+		<a href="/tags/create?type=QRCODE" {% if type == 'QRCODE' %} data-active {% endif %} class="px-3 py-2 bg-zinc-200 text-zinc-800 data-[active]:bg-zinc-500 [data-active='true']:text-zinc-50">QRCODE</a>
+	</div>
+
+	<form id="form" class="w-full flex flex-col gap-2">
+		<div class="w-full flex gap-3 h-12">
+			<input name="product_code" class="bg-zinc-200 text-zinc-700 placeholder:text-slate-400 outline-none focus-visible:ring-2 focus-visible:ring-zing-500 flex-1 h-full rounded-md" />
+
+			<select name="extension" class="bg-zinc-200 text-zinc-700 placeholder:text-slate-400 outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 h-full max-w-20">
+				<option value="" disabled selected>Choose a format</option>
+
+				{% for format in formats %}
+				  <option value="{{format}}">{{format}}</option>
+				{% endfor %}
+	
+				<option value="AVIF">AVIF</option>
+			</select>
+		</div>
+
+		<button class="w-full h-12 bg-slate-700 text-white active:bg-slate-300 active:text-slate-800 rounded-md">
+			GENERATE TAG
+		</button>
+
+		{% with messages = get_flashed_messages() %}
+		  {% if messages %}
+			  <div>
+  			  {% for category, message in messages %}
+  				   <label class="w-full h-10 rounded-md flex items-center p-2 ring-2 {{category}}">
+  						 <span>{{message}}</span>
+  					 </label>
+  				{% endfor %}
+				</div>
+			{% endif %}
+		{% endwith %}
+	</form>
+
+	<!-- TODO: Render a list of generated tags -->
+</main>
+{% endblock %}
