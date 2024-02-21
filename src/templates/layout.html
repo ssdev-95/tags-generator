@@ -1,0 +1,27 @@
+<!Doctype html>
+
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+
+		<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+		<script src="https://cdn.tailwindcss.com"></script>
+
+		<link rel="stylesheet" href={{url_for('static',filename='css/index.css')}} />
+		<link rel="icon" type="image/svg" href={{url_for('static',filename='img/favicon.svg')}} />
+		<title>Tag-Gen&trade;</title>
+	</head>
+
+	<body class="bg-white text-zinc-500 w-screen p-8">
+		{% block main %}{% endblock main %}
+
+		<script src={{url_for('static',filename='js/tailwind.config.js')}}></script>
+		<script src={{url_for('static',filename='js/eruda.js')}}></script>
+		<script src={{url_for('static',filename='js/index.js')}}></script>
+	</body>
+</html>

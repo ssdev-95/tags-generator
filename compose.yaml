@@ -1,15 +1,7 @@
 services:
-  test:
-    build:
-      context: .
-      dockerfile: Dockertest
-    ports:
-      - "3001:3001"
-    command: pytest
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  dev:
+    build: .
+    profiles: [dev]
     ports:
       - "3001:3001"
     command: python3 run.py
