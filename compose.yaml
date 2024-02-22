@@ -5,3 +5,9 @@ services:
     ports:
       - "3001:3001"
     command: python3 run.py
+  test:
+    build: .
+    profiles: [test]
+    ports:
+      - "3001:3001"
+    command: pytest
