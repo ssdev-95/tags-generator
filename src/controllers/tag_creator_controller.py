@@ -16,5 +16,5 @@ class TagCreatorController:
         return {
             'type': 'x-image-tag',
             'extension': extension,
-            'path': f'{tag_path}.{extension.lower()}'
+            'path': f'{tag_path}'
         }

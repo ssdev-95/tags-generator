@@ -2,12 +2,20 @@ services:
   dev:
     build: .
     profiles: [dev]
+    env_file:
+      - .env
+    environment:
+      - SECRET_KEY=${FLASK_SECRET_KEY}
     ports:
       - "3001:3001"
     command: python3 run.py
   test:
     build: .
     profiles: [test]
+    env_file:
+      - .env.test
+    environment:
+      - SECRET_KEY=${FLASK_SECRET_KEY}
     ports:
       - "3001:3001"
     command: pytest

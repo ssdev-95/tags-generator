@@ -4,7 +4,6 @@ from src.errors.error_types.http_unprocessable_entity_exception import HttpUnpro
 
 
 flask_app = create_app()
-flask_app.secret_key = 'The_Dumbest_Secret_Key_That_Someone_Can_Write_Right_Here_And_Now_Buddies'
 
 
 def test_create_barcode():

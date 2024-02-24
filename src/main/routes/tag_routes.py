@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, redirect, render_template, flash
+from flask import Blueprint, request, jsonify, render_template
 from src.validators.tag_creator_validator import TagCreatorValidator
 from src.views.http_types.http_request import HttpRequest
 from src.views.tag_creator_view import TagCreatorView
@@ -23,8 +23,7 @@ def createTag():
     tag_creator_view = TagCreatorView(tag_type)
     http_response = tag_creator_view.create_tag(http_request)
 
-    flash('Success', 'success')
-    return redirect('/tags/create'), http_response.status_code
+    return jsonify(http_response.body), http_response.status_code
 
 
 @tags_bp.route('/tags/create', methods=['GET'])
