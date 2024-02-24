@@ -1,4 +1,4 @@
-from flask import redirect, flash
+from flask import jsonify
 from src.views.http_types.http_response import HttpResponse
 from src.errors.error_types.http_unprocessable_entity_exception import HttpUnprocessableEntityException
 
@@ -26,5 +26,4 @@ def handle_errors(error: Exception):
             }
         }, 500)
 
-    flash('An exception has occurred, try again later', 'error')
-    return redirect('/tags/create'), http_response.status_code
+    return jsonify(http_response.body), http_response.status_code

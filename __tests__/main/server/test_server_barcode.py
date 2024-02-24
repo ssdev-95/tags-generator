@@ -11,8 +11,8 @@ def test_create_barcode():
         try:
             data=json.dumps({'product_code':'2952$34$2929927','extension':'PNG'})
             content_type='application/json'
-            response = client.post('/tags/create', data=data, content_type=content_type)
-            assert response.status_code == 201
+            res = client.post('/tags/create', data=data, content_type=content_type)
+            assert res.status_code == 201
         except Exception:
             assert False
 

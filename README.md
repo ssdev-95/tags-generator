@@ -17,6 +17,24 @@
   - Python-venv
   - Docker
 
+## Running locally
+
+> Ensure you have Docker installed on selected machine
+
+  Befpre running application, create a file called ` .env ` (or ` .env.test ` if running tests), at the root of project folder.
+  With everything set up, run: ` docker-compose --profile [PROFILE] {up|down} [OPTIONS] `
+
+> PROFILE CAN BE:
+>   -   'dev'   - for devwçelopment purposes
+>   -   'test'  - for twsting purposes
+>   -   'prod'  - for deployment purposes
+>
+>
+> `{up|down}` option can start or stop the container, respectively ..
+>
+>
+> OPTIONS can be any available.in docker documentation, such as ` -d `(for running commands alongside the started application), ` --rmi all `(fpr removing docker image after stoping/deleting container), etc ..
+
 ## Roadmap
 
   - [x] an user can generate tags
