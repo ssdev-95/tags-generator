@@ -6,6 +6,7 @@ services:
       - .env
     environment:
       - SECRET_KEY=${FLASK_SECRET_KEY}
+      - DB_NAME=${FLASK_DB_NAME}
     ports:
       - "3001:3001"
     command: python3 run.py
@@ -16,6 +17,7 @@ services:
       - .env.test
     environment:
       - SECRET_KEY=${FLASK_SECRET_KEY}
+      - DB_NAME=${FLASK_DB_NAME}
     ports:
       - "3001:3001"
     command: pytest

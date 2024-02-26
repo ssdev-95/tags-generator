@@ -161,9 +161,9 @@ cython_debug/
 #.idea/
 
 # Response Data
-**/*.svg
-**/*.png
-**/*.jpeg
-**/*.jpg
-**/*.webp
-**/*.ico
+**/tmp/*.svg
+**/tmp/*.png
+**/tmp/*.jpeg
+**/tmp/*.jpg
+**/tmp/*.webp
+**/tmp/*.ico

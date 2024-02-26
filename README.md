@@ -14,7 +14,7 @@
 
 > Ensure you have Docker installed on selected machine
 
-  Befpre running application, create a file called ` .env ` (or ` .env.test ` if running tests), at the root of project folder.
+  Befpre running application, create a file called ` .env ` (or ` .env.test ` if running tests), with a single var called ` FLASK_SECRET_KEY `, at the root of project folder.
   With everything set up, run: ` docker-compose --profile [PROFILE] {up|down} [OPTIONS] `
 
 > PROFILE CAN BE:
