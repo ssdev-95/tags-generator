@@ -1,23 +1,27 @@
 services:
   dev:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     profiles: [dev]
     env_file:
       - .env
     environment:
       - SECRET_KEY=${FLASK_SECRET_KEY}
-      - DB_NAME=${FLASK_DB_NAME}
+      - DB_URL=sqlite:///src/data/tags.db
     ports:
       - "3001:3001"
     command: python3 run.py
   test:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockertest
     profiles: [test]
     env_file:
       - .env.test
     environment:
       - SECRET_KEY=${FLASK_SECRET_KEY}
-      - DB_NAME=${FLASK_DB_NAME}
+      - DB_URL=sqlite:///src/data/tags.db
     ports:
-      - "3001:3001"
+      - "3002:3002"
     command: pytest

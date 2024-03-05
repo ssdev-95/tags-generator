@@ -4,6 +4,7 @@ WORKDIR /app
 COPY requirements.txt .
 COPY run.py .
 COPY src ./src
+COPY __tests__ ./__tests__
 
 VOLUME ${pwd}/db/
 
