@@ -3,13 +3,14 @@ from flask import Flask
 from src.main.routes.tag_routes import tags_bp
 from src.errors.error_handlers import handle_errors
 
-from .static import template_folder, static_folder
+from .static import template_folder, static_folder, tmp_folder
 from src.data.db_connector import db_connector
 
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 def create_app():
+    print(tmp_folder)
     app = Flask(
         __name__,
         static_url_path='',

@@ -28,9 +28,13 @@ class TagCreatorController:
                 return tag.to_dict()
 
             tag = Tag()
-            tag.name = tag_path.replace('/tmp/', '', 1).replace(f'.{extension}', '', 1)
+            tag_name = tag_path.split('/tmp/')[1]
+            tag.name = tag_name
             tag.extension = extension
             tag.path = tag_path
             conn.add(tag)
+            conn.commit()
+
+            print(f'[DEBUG] tag_id :: {tag.id}')
 
             return tag.to_dict()

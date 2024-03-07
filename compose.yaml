@@ -8,7 +8,7 @@ services:
       - .env
     environment:
       - SECRET_KEY=${FLASK_SECRET_KEY}
-      - DB_URL=sqlite:///src/data/tags.db
+      - DB_URL=${FLASK_DB_URL}
     ports:
       - "3001:3001"
     command: python3 run.py
@@ -21,7 +21,7 @@ services:
       - .env.test
     environment:
       - SECRET_KEY=${FLASK_SECRET_KEY}
-      - DB_URL=sqlite:///src/data/tags.db
+      - DB_URL=${FLASK_DB_URL}
     ports:
       - "3002:3002"
     command: pytest
