@@ -12,8 +12,8 @@ class TagCreatorController:
 
 
     def create(self, product_data:str, extension:str) -> Dict:
-        tag_path = self.tag_creator.create_tag(product_data, extension)
-        return self.__persist_tag_data__(tag_path, extension)
+        tag_path = self.tag_creator.create_tag(product_data, extension).split('/static/')[1]
+        return self.__persist_tag_data__(tag_path,extension)
 
 
     def find_tag_by_path(self, conn:Session, tag_path:str):
@@ -28,7 +28,7 @@ class TagCreatorController:
                 return tag.to_dict()
 
             tag = Tag()
-            tag_name = tag_path.split('/tmp/')[1]
+            tag_name = tag_path.replace('tmp/','',1)
             tag.name = tag_name
             tag.extension = extension
             tag.path = tag_path

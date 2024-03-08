@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<main class="w-full max-w-100 mx-auto min-h-lsc flex flex-col gap-4">
+	<div class="flex items-center gap-3">
+		<img src={{url_for('static',filename='img/favicon.svg')}} class="h-8 w-auto" alt="a star vectorized icon" />
+		<h1 class="text-lg">Tag Gen</h1>
+	</div>
+
+	<div class="flex flex-col gap-4">
+		<img class="pointer-events-none" src="{{url_for('static', filename=tag_path)}}" alt="{{tag_name}}" />
+		<button class="text-uppercase px-4 py-2">save</button>
+	</div>
+</main>
+{% endblock %}

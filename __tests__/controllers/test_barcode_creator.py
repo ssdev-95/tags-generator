@@ -10,7 +10,7 @@ def test_create_barcode():
 
     assert 'path' in response
     assert 'extension' in response
-    assert 'type' in response
+    assert 'name' in response
 
 
 def test_create_barcode_with_missing_args():

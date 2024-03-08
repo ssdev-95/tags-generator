@@ -1,21 +1,21 @@
 from src.controllers.tag_creator_controller import TagCreatorController
-from src.drivers.tag_creator_handler import TagCreatorHandler
+from src.drivers.qrcode_handler import QrcodeHandler
 
 
 def test_create_qrcode():
     [code,extension] = ['1861JF7h81372b-7wjd828Hyq','PNG']
-    tag_handler = TagCreatorHandler()
+    tag_handler = QrcodeHandler()
     qr_controller = TagCreatorController(tag_handler)
     response = qr_controller.create(code,extension)
 
     assert 'path' in response
     assert 'extension' in response
-    assert 'type' in response
+    assert 'name' in response
 
 
 def test_create_qrcode_with_missing_args():
     [code] = ['1861JF7h81372b-7wjd828Hyq']
-    tag_handler = TagCreatorHandler()
+    tag_handler = QrcodeHandler()
     qr_controller = TagCreatorController(tag_handler)
 
     try:
