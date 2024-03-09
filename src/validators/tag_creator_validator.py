@@ -20,6 +20,9 @@ class TagCreatorValidator:
 
 
     def validate(self, request)-> None:
+        if request.json is None:
+            raise HttpUnprocessableEntityException('Missing request body')
+
         v = Validator()
         if not v.validate(request.json, self.__schema):
             errors = v.errors

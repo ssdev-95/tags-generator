@@ -1,11 +1,11 @@
-from flask import Blueprint, request, jsonify, render_template
+from typing import Dict
+from flask import Blueprint, request, redirect, render_template
 
 from ...validators.tag_creator_validator import TagCreatorValidator
 from ...errors.error_types.http_unprocessable_entity_exception import HttpUnprocessableEntityException
 from ...views.http_types.http_request import HttpRequest
 from ...views.tag_creator_view import TagCreatorView
 from ...views.tag_retrieval_view import TagRetrievalView
-from ..server.static import tmp_folder
 
 
 tags_bp = Blueprint('tag_routes',__name__)
@@ -19,11 +19,7 @@ def listAllTags():
 
 @tags_bp.route('/tags/create', methods=['POST'])
 def createTag():
-    if request.json is None:
-        raise HttpUnprocessableEntityException('Missing body')
-    
-    http_request = HttpRequest(body=request.json,query_params=request.args)
-    tag_type = http_request.query_params.get('type', 'BARCODE')
+    tag_type = request.args.get('type', 'BARCODE')
     allowed_formats = ['SVG','PNG']
 
     if tag_type == 'BARCODE':
@@ -33,9 +29,13 @@ def createTag():
     tc_validator.validate(request)
 
     tag_creator_view = TagCreatorView(tag_type)
-    http_response = tag_creator_view.create_tag(http_request)
 
-    return jsonify(http_response.body), http_response.status_code
+    body = request.json or  {}
+    http_request = HttpRequest(body=body)
+    http_response = tag_creator_view.create_tag(http_request)
+    tag_id = http_response.body.get('id')
+
+    return redirect(f'/tags/{tag_id}'), http_response.status_code
 
 
 @tags_bp.route('/tags/create', methods=['GET'])

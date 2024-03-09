@@ -7,9 +7,13 @@
 		<h1 class="text-lg">Tag Gen</h1>
 	</div>
 
-	<div class="flex flex-col gap-4">
+	<div class="flex flex-col gap-4 items-center">
 		<img class="pointer-events-none" src="{{url_for('static', filename=tag_path)}}" alt="{{tag_name}}" />
-		<button class="text-uppercase px-4 py-2">save</button>
+		<a href="{{url_for('static', filename=tag_path)}}" download="{{tag_name}}">
+			<button type="button" class="text-lg text-upper px-5 h-12 bg-slate-700 text-white active:bg-slate-300 active:text-slate-800 rounded-md">
+				save
+			</button>
+		</a>
 	</div>
 </main>
 {% endblock %}

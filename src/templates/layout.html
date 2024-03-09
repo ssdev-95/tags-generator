@@ -22,6 +22,8 @@
 
 		<script src={{url_for('static',filename='js/tailwind.config.js')}}></script>
 		<script src={{url_for('static',filename='js/eruda.js')}}></script>
-		<script src={{url_for('static',filename='js/index.js')}}></script>
+		
+
+		{% block scripts %}{% endblock scripts %}
 	</body>
 </html>

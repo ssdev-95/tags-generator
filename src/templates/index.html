@@ -32,7 +32,12 @@
 			GENERATE TAG
 		</button>
 	</form>
-
-	<!-- TODO: Render a list of generated tags -->
 </main>
-{% endblock %}
+{% endblock main %}
+
+
+
+
+{% block scripts %}
+<script src={{url_for('static',filename='js/index.js')}}></script>
+{% endblock scripts %}
