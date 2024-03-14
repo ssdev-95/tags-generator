@@ -2,12 +2,12 @@ import os
 from .tag_creator_handler import TagCreatorHandler
 from barcode import Code128
 from barcode.writer import ImageWriter, SVGWriter
-from ..main.server.static import tmp_folder
+from ..main.server.static import config
 
 
 class BarcodeHandler(TagCreatorHandler):
     def create_tag(self, product_code: str, extension: str) -> str:
-        tag_path = f'{tmp_folder}/brc-{product_code}'
+        tag_path = f'{config["tmp_folder"]}/brc-{product_code}'
 
         if os.path.exists(tag_path):
             print(f'[DEBUG] Tag already saved! {os.times()}')

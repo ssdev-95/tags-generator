@@ -1,5 +1,7 @@
-from flask import jsonify
-from src.errors.error_types.http_entity_not_found_exception import HttpEntityNotFoundException
+from flask import jsonify, redirect
+
+from .error_types.http_entity_not_found_exception import HttpEntityNotFoundException
+from .error_types.http_authentication_exception import HttpAuthenticationException
 from src.views.http_types.http_response import HttpResponse
 from src.errors.error_types.http_unprocessable_entity_exception import HttpUnprocessableEntityException
 
@@ -17,6 +19,10 @@ def handle_errors(error: Exception):
                 },
         }, error.status_code)
         return jsonify(http_response.body), http_response.status_code
+
+    if isinstance(error, HttpAuthenticationException):
+        print(f'AUTHENTICATION FAILURE EXCEPTION [{error.message}]')
+        return redirect(f'/auth/{error.auth_type}'), 422
 
     if isinstance(error, HttpEntityNotFoundException):
         print('HTTP ENTITY NOT FOIND EXCEPTION')

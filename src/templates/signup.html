@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<main class="w-full max-w-100 mx-auto min-h-lsc flex justify-center">
+	<form action="/auth/signin" method="POST" class="w-full max-w-[411px] flex flex-col gap-4">
+		<label class="flex flex-col gap-2 items-start">
+			<strong>Username/Email</strong>
+			<input name="credential" type="text" placeholder="john_doe@taggen.io" class="w-full h-12 p-2 rounded-md outline-none" />
+		</label>
+
+		<label class="flex flex-col gap-2 items-start">
+			<strong>Password</strong>
+			<input name="password" type="password" placeholder="***************" class="w-full h-12 p-2 rounded-md outline-none" />
+		</label>
+
+		<button class="text-lg text-upper px-5 h-12 bg-slate-700 text-white active:bg-slate-300 active:text-slate-800 rounded-md">
+			enter
+		</button>
+	</form>
+</main>
+{% endblock main %}

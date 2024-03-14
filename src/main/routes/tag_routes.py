@@ -1,8 +1,6 @@
-from typing import Dict
 from flask import Blueprint, request, redirect, render_template
 
 from ...validators.tag_creator_validator import TagCreatorValidator
-from ...errors.error_types.http_unprocessable_entity_exception import HttpUnprocessableEntityException
 from ...views.http_types.http_request import HttpRequest
 from ...views.tag_creator_view import TagCreatorView
 from ...views.tag_retrieval_view import TagRetrievalView
