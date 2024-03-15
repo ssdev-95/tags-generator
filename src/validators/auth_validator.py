@@ -4,7 +4,7 @@ from src.errors.error_types.http_unprocessable_entity_exception import HttpUnpro
 
 schemas = {
     'signin': {
-        'credential': {
+        'username': {
             'type': 'string',
             'required': True,
             'empty': False,
@@ -22,6 +22,9 @@ schemas = {
             'empty': False,
         },
         'email': {
+            'type': 'string',
+            'required': True,
+            'empty': False,
         },
         'password': {
             'type': 'string',
@@ -39,6 +42,7 @@ schemas = {
 class AuthValidator():
     def __init__(self, schema:str) -> None:
         self.__schema = schemas[schema]
+        self.__auth_type = schema
 
     def validate(self, request) -> None:
         error = 'Some required fields are missing'
@@ -52,6 +56,6 @@ class AuthValidator():
             print(f'{v.errors}')
             raise HttpUnprocessableEntityException(error)
 
-        if request.form.get('password') != request.form.get('password_confirmation'):
+        if self.__auth_type == 'signup' and (request.form.get('password') != request.form.get('password_confirmation')):
             print('PASSWORD AND CONFIRMATION DOES NOT MATCH')
             raise HttpUnprocessableEntityException('Credentials Does Not Match Any')

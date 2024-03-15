@@ -1,6 +1,8 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from src.data.models.Base import AccountStatus
+
 from ..data.models.User import User
 from ..data.db_connector import db_connector
 from ..drivers.bcrypt import bcrypt
@@ -14,7 +16,7 @@ class AuthenticationController:
     def find_user_by_username(self, username:str):
         with Session(self.__engine) as conn:
             query = select(User).filter_by(username=username)
-            return conn.execute(query).one_or_none()
+            return conn.execute(query).scalar_one_or_none()
 
 
     def register(self,username:str,email:str,password:str):
@@ -30,6 +32,7 @@ class AuthenticationController:
                 user.email = email
                 encrypted_password = bcrypt.generate_password_hash(password).decode('UTF-8')
                 user.password = encrypted_password
+                user.account_status = AccountStatus.ACTIVE
 
                 conn.add(user)
                 conn.commit()

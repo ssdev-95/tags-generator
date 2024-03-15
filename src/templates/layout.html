@@ -18,6 +18,19 @@
 	</head>
 
 	<body class="bg-white text-zinc-500 w-screen p-8">
+
+		<header class="w-full flex items-center justify-between">
+			<div class="flex items-center gap-3">
+				<img src={{url_for('static',filename='img/favicon.svg')}} class="h-6 w-auto" alt="a star vectorized icon" />
+				<h1>Tag Gen</h1>
+			</div>
+
+			{% if logged_in %}
+			  <form action="/auth/signout" method="POST">
+					<button class="px-3 h-12 text-semibold rounded-md active:bg-slate-200 focus-visible:ring-2 focus-visible:ring-slate-800 text-slate-800">exit</button>
+				</form>
+			{% endif %}
+		</header>
 		{% block main %}{% endblock main %}
 
 		<script src={{url_for('static',filename='js/tailwind.config.js')}}></script>

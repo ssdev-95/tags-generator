@@ -1,4 +1,4 @@
-from flask import Blueprint, request, redirect, render_template
+from flask import Blueprint, request, redirect, render_template, session
 
 from ...validators.tag_creator_validator import TagCreatorValidator
 from ...views.http_types.http_request import HttpRequest
@@ -44,11 +44,21 @@ def createTagPage():
     if TYPE=='BARCODE':
         FORMATS = FORMATS + ['JPEG','ICO']
 
-    return render_template('index.html',type=TYPE,formats=FORMATS)
+    logged_in = False
+
+    if 'is_logged_in' in session:
+        logged_in = session['is_logged_in']
+
+    return render_template('index.html',type=TYPE,formats=FORMATS, logged_in=logged_in)
 
 
 @tags_bp.route('/tags/<id>', methods=['GET'])
 def get_tag_image(id:str):
     tag_view = TagRetrievalView()
     tag = tag_view.get_tag_by_id(id)
-    return render_template('tag_view.html',tag_path=tag.path, tag_name=tag.name)
+    logged_in = False
+
+    if 'is_logged_in' in session:
+        logged_in = session['is_logged_in']
+
+    return render_template('tag_view.html',tag_path=tag.path, tag_name=tag.name, logged_in=logged_in)

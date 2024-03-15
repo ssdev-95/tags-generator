@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 
 template_folder = os.path.abspath(__file__)
 template_folder = os.path.dirname(template_folder)
@@ -9,7 +10,7 @@ template_folder = os.path.join(template_folder,'templates')
 static_folder = os.path.join(template_folder,'static')
 tmp_folder = os.path.join(static_folder, 'tmp')
 
-PERMANENT_SESSION_LIFETIME = 24 * 60 * 60
+PERMANENT_SESSION_LIFETIME = timedelta(minutes=0.5)
 
 config = {
     'template_folder': template_folder,
